@@ -1,0 +1,21 @@
+#Для заданного списка товаров получить названия всех категорий, в которых представлены товары.
+SELECT DISTINCT categories.id, categories.name FROM categories
+                                                        LEFT JOIN product_category ON product_category.cat_id = categories.id
+WHERE product_category.prod_id IN (1,2,3,4,5);
+
+#Для заданной категории получить список предложений всех товаров из этой категории.
+SELECT products.id, products.name FROM products
+                                           LEFT JOIN product_category ON product_category.prod_id = products.id
+WHERE product_category.cat_id = 2;
+
+#Для заданного списка категорий получить количество уникальных товаров в каждой категории.
+SELECT categories.name, COUNT(prod_id) products_count FROM product_category
+                                                                  LEFT JOIN categories ON product_category.cat_id = categories.id
+WHERE cat_id IN (1,2,3) GROUP BY cat_id;
+
+#Для заданного списка категорий получить количество единиц каждого товара который входит в указанные категории.
+SELECT SUM(count) as unique_prod_count FROM (
+                                                SELECT product_category.cat_id, COUNT(product_category.prod_id) as count FROM product_category
+                                                WHERE product_category.cat_id IN (2, 3)
+                                                GROUP BY product_category.cat_id
+                                            ) as final_sum
