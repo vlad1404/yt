@@ -21,7 +21,6 @@ class SiteController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'login', 'signup', 'index', 'clear-cache'],
-//                'only' => ['login'],
                 'rules' => [
                     [
                         'actions' => ['logout', 'index', 'clear-cache'],

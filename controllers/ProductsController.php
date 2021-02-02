@@ -6,37 +6,10 @@ use app\models\Categories;
 use app\models\Products;
 use Yii;
 use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
 use yii\web\HttpException;
 
-class ProductsController extends \yii\web\Controller
+class ProductsController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['index', 'view'],
-                'rules' => [
-                    [
-                        'actions' => ['index', 'view'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     public function actionIndex()
     {
         $products = Yii::$app->cache->get('products');

@@ -8,34 +8,8 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\HttpException;
 
-class CategoriesController extends \yii\web\Controller
+class CategoriesController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['index', 'view'],
-                'rules' => [
-                    [
-                        'actions' => ['index', 'view'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     public function actionIndex()
     {
         $categories = Yii::$app->cache->get('products');
