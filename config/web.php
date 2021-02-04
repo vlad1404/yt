@@ -12,6 +12,17 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'assetManager' => [
+            'bundles' => [
+                'dosamigos\google\maps\MapAsset' => [
+                    'options' => [
+                        'key' => 'AIzaSyAyHhlWMA5aau8CIz2tJfVb9oqwVhSwa4A',
+                        'language' => 'ua',
+                        'version' => '3.1.18'
+                    ]
+                ]
+            ]
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'HeqPMIouWGvzFeMRkf6csf6j5IfWjaBC',
